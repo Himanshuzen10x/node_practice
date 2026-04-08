@@ -8,7 +8,17 @@ const app = express();
 //middlewear
 app.use(express.urlencoded({ extended: false}));
 
+// middleware
+app.use((req, res, next) => {
+    console.log("HEllo From Himanshu")
+    next(); // next function to call next muddleware
+});
 
+app.use((req,res,next)=> {
+    fs.appendFile("log.txt" , `\n${Date.now()}: ${req.ip} ${req.method}: ${req.path}`, (err,data)=>{
+        next();
+    });
+});
 
 app.get("/api/users", (req, res) => {
     return res.json(users);
