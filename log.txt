@@ -1,0 +1,5 @@
+1775644505472: ::1 GET: /api/users
+1775644537338: ::1 GET: /api/users
+1775644564587: ::1 PATCH: /api/users/1
+1775644573961: ::1 PATCH: /api/users/6
+1775644588420: ::1 DELETE: /api/users/7
