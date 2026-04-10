@@ -21,6 +21,10 @@ app.use((req,res,next)=> {
 });
 
 app.get("/api/users", (req, res) => {
+    res.setHeader("X-myName" , "Hiamnshu Khare"); //custum headers 
+    // use X- in Custum headers naming
+    //there are may buildin headers also
+    console.log(req.headers);
     return res.json(users);
 });
 
