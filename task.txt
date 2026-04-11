@@ -1,1 +1,5 @@
 REST API - JSON
+
+return res.json({
+                message: "User updated",
+                updatedUser: users[user]})
