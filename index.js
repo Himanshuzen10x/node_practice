@@ -2,8 +2,39 @@ const express = require("express");
 const users = require("./MOCK_DATA.json");
 const res = require("express/lib/response");
 const fs = require("fs");
+const mongoose = require("mongoose")
 
 const app = express();
+
+// connet Mongoose
+mongoose.connect("mongodb://127.0.0.1:27017/HimanhsuDB")
+.then(() => console.log("mongoose connected")).catch((err) => console.log("mongo error", err));
+// schema
+const userSchema = new mongoose.Schema({
+    FirstName: {
+        type: String,
+        required: true,
+    },
+    LastName: {
+        type: String,
+    },
+    Email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    JobTitle: {
+        type: String,
+
+    },
+    Gender: {
+        type: String,
+        required: true,
+    }
+})
+
+// model schema
+const User = mongoose.model("user", userSchema);
 
 //middlewear
 app.use(express.urlencoded({ extended: false }));
