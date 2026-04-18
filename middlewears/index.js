@@ -1,3 +1,4 @@
+const fs = require("fs");
 function logResReq(filename) {
     return (req, res, next) => {
         fs.appendFile("log.txt", `\n${Date.now()}: ${req.ip} ${req.method}: ${req.path}`, (err, data) => {
