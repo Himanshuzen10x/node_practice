@@ -90,19 +90,39 @@ get( async (req, res) => {
     return res.json(user);
 })
     .patch( async (req, res) => {
-        await User.findByIdAndUpdate(req.params.id , {FirstName: "Changed"} )
-        return res.json({ message: "User updated",})
+        try{
+            const user = await User.findByIdAndUpdate(req.params.id, {
+                FirstName: req.body.first_name,
+                LastName: req.body.last_name,
+                Email: req.body.email,
+                Gender: req.body.gender,
+                JobTitle: req.body.job_title,
+            },
+            { new: true, runValidators: true }); 
+
+            if(!user){
+                return res.status(404).json({ message: "User not Found"})
+            }
+            
+            return res.status(200).json({
+                message: "User updated successfully"
+            });
+        }
+        catch (error) {
+            console.log("ERROR:", error);  
+            return res.status(500).json({ message: error.message });
+        }
         // if (user === -1) {
         //     return res.status(404).json({ message: " user not found" });
         // }
-    })
-
-    .delete( async (req, res) => {
-    await User.findByIdAndDelete(req.params.id)
-    return res.json({ message: "Deleted",})
-        //delete code
-
     });
+
+    // .delete( async (req, res) => {
+    // await User.findByIdAndDelete(req.params.id)
+    // return res.json({ message: "Deleted",})
+    //     //delete code
+
+    // });
 
 
 
