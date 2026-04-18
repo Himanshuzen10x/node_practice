@@ -7,4 +7,4 @@ function logResReq(filename) {
     }
 }
 
-module.exports = {logResReq};
+module.exports = { logResReq };
