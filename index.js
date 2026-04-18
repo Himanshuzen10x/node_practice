@@ -115,14 +115,21 @@ get( async (req, res) => {
         // if (user === -1) {
         //     return res.status(404).json({ message: " user not found" });
         // }
+    })
+    .delete( async (req, res) => {
+        try{
+const user = await User.findByIdAndDelete(req.params.id)
+if(!user){
+    return res.sendStatus(404).json({ message: "user not found"})
+}
+return res.json({
+    message: "User deleted successfully"
+});
+        } catch(error){
+            console.log("ERROR" , error)
+            return res.status(500).json({ message: error.message });
+        }
     });
-
-    // .delete( async (req, res) => {
-    // await User.findByIdAndDelete(req.params.id)
-    // return res.json({ message: "Deleted",})
-    //     //delete code
-
-    // });
 
 
 
