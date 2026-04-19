@@ -45,9 +45,7 @@ async function HandleUpdateUserByID(req, res) {
         console.log("ERROR:", error);
         return res.status(500).json({ message: error.message });
     }
-    // if (user === -1) {
-    //     return res.status(404).json({ message: " user not found" });
-    // }
+  
 
 }
 
